@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Disasters' Dire Consequences: Indigenous Communities at Risk!</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f3f4f6;
+      min-height: 100vh;
+      color: #333;
+    }
+
+    .container {
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #1a202c;
+    }
+
+    /* Card Styles */
+    .card {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .card-title {
+      font-size: 1.8rem;
+      color: #6b8e23; /* Earthy green for Indigenous theme */
+    }
+
+    .card-description {
+      color: #6b7280;
+      margin-bottom: 20px;
+    }
+
+    /* Chart container */
+    .chart-container {
+      height: 400px;
+    }
+
+    /* Table Styles */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    table th, table td {
+      padding: 12px;
+      border: 1px solid #ddd;
+    }
+
+    table th {
+      background-color: #6b8e23; /* Earthy tone for Indigenous theme */
+      color: white;
+    }
+
+    table td {
+      background-color: white;
+      color: #333;
+    }
+
+    .table-heading {
+      width: 180px;
+      color: red;
+    }
+
+    .alert {
+      color: red;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .center-text {
+      text-align: center;
+      margin-top: 40px;
+      color: #374151;
+    }
+
+    .next-button {
+      background-color: #8b4513; /* Brown for Indigenous theme */
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .next-button:hover {
+      background-color: #5a3d1c; /* Darker brown on hover */
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Disasters' Dire Consequences: Indigenous Communities at Risk!</h1>
+
+    <!-- Disaster Impact Chart Card -->
+    <div class="card">
+      <h2 class="card-title">Rising Risks: Indigenous Communities and Disasters</h2>
+      <p class="card-description">Impact of Various Disasters on Indigenous Communities (Impact Index: 0-100)</p>
+      <div class="chart-container">
+        <canvas id="disasterChart"></canvas>
+      </div>
+    </div>
+
+    <!-- Community Health Table Card -->
+    <div class="card">
+      <h2 class="card-title alert">
+        <span>⚠️</span> Indigenous Communities' Health: The Hidden Toll
+      </h2>
+      <p class="card-description">How disasters are affecting Indigenous health and livelihoods.</p>
+      <table>
+        <thead>
+          <tr>
+            <th class="table-heading">Disaster Type</th>
+            <th>Impact on Indigenous Communities</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Floods</td>
+            <td>Displacement 🌊 Loss of Livelihoods 🌾</td>
+          </tr>
+          <tr>
+            <td>Wildfires</td>
+            <td>Destruction of Homes 🔥 Decline in Air Quality 🌫️</td>
+          </tr>
+          <tr>
+            <td>Earthquakes</td>
+            <td>Infrastructure Damage 🏚️ Psychological Trauma 😰</td>
+          </tr>
+          <tr>
+            <td>Hurricanes</td>
+            <td>Severe Damage to Property 🏠 Increased Health Risks 🩺</td>
+          </tr>
+          <tr>
+            <td>Droughts</td>
+            <td>Food Insecurity 🍽️ Water Scarcity 🚱</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Center Text and Button -->
+    <div class="center-text">
+      <p>🚨 Urgent Call to Action: Safeguarding Indigenous Communities! 🚨</p>
+      <p>These statistics highlight the pressing need to protect Indigenous health and well-being against the threats of disasters!</p>
+      <a href="blogs.html" class="next-button">Next: Indigenous Stories and Solutions</a>
+    </div>
+  </div>
+
+  <!-- Chart.js Script -->
+  <script>
+    const ctx = document.getElementById('disasterChart').getContext('2d');
+    const disasterChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Floods', 'Wildfires', 'Earthquakes', 'Hurricanes', 'Droughts'],
+        datasets: [
+          { label: 'Community Impact', data: [75, 85, 90, 80, 70], backgroundColor: '#8b4513' }, /* Earthy brown */
+          { label: 'Health Risks', data: [60, 70, 80, 65, 50], backgroundColor: '#4ecdc4' },
+          { label: 'Economic Loss', data: [80, 75, 70, 85, 90], backgroundColor: '#2e8b57' }, /* Forest green */
+        ]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          x: {
+            title: { display: true, text: 'Type of Disaster' }
+          },
+          y: {
+            title: { display: true, text: 'Impact Index' }
+          }
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>

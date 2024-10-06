@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Major Impacts of Pollution and Disasters</title>
+    <style>
+        /* General body and container styles */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #000000;
+            color: #f0f0f0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .container {
+            width: 90vw;
+            max-width: 1200px;
+            padding: 20px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: #29d9d5;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(500px, 2fr));
+            gap: 40px;
+            margin: 0 auto;
+        }
+
+        /* Card Styles */
+        .card {
+            background-color: #1c1c1c;
+            border-radius: 20px;
+            padding: 25px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+            text-align: center;
+            color: #f0f0f0;
+            min-height: 150px; /* Ensure cards have consistent height */
+        }
+
+        /* Styling for 'Know More' buttons */
+.card-content a {
+    display: inline-block;
+    background-color: #29d9d5;
+    color: #000000;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.card-content a:hover {
+    background-color: #29d9d5;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0, 255, 162, 0.4);
+}
+
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 40px rgba(137, 253, 253, 0.8);
+        }
+
+        .card-header h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .card-content {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        /* Button Styles */
+        .back-button, .next-button a {
+            display: inline-block;
+            margin-top: 20px;
+            background-color: #29d9d5;
+            color: #000000;
+            padding: 15px 30px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            text-align: center;
+        }
+
+        .back-button:hover, .next-button a:hover {
+            background-color: #29d9d5;
+            transform: translateY(-3px);
+        }
+
+        /* Align Next Button */
+        .next-button {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        /* Center disaster category buttons */
+        .disaster-grid {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="main-page">
+        <h1>Major Impacts of Pollution and Disasters</h1>
+
+        <div class="grid">
+            <div class="card" id="pollution-card" onclick="showImpactsPage('pollution')">
+                <div class="card-header">
+                    <h2>Pollution</h2>
+                </div>
+                <div class="card-content">
+                    <p>Effects of various types of pollution on health and the environment.</p>
+                </div>
+            </div>
+
+            <div class="card" id="disaster-card" onclick="showDisasterTypePage()">
+                <div class="card-header">
+                    <h2>Disasters</h2>
+                </div>
+                <div class="card-content">
+                    <p>Impact of natural and manmade disasters on communities.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="next-button">
+            <a href="https://www.who.int/data/gho/data/themes/air-pollution" class="back-button">Next: View Statistics</a>
+            
+        </div>
+    </div>
+
+    <div class="container" id="disaster-type-page" style="display: none;">
+        <h1>Select Disaster Type</h1>
+        <div class="grid">
+            <div class="card" onclick="showImpactsPage('disaster', 'manmade')">
+                <div class="card-header">
+                    <h2>Manmade Disasters</h2>
+                </div>
+                <div class="card-content">
+                    <p>Impacts of human-induced disasters on women.</p>
+                </div>
+            </div>
+
+            <div class="card" onclick="showImpactsPage('disaster', 'natural')">
+                <div class="card-header">
+                    <h2>Natural Disasters</h2>
+                </div>
+                <div class="card-content">
+                    <p>Impacts of natural disasters on women.</p>
+                </div>
+            </div>
+        </div>
+        <a href="#main-page" class="back-button" onclick="showMainPage()">Back to Main Page</a>
+    </div>
+
+    <div class="container" id="impacts-page" style="display: none;">
+        <h1 id="impacts-title">Impacts on Women</h1>
+
+        <div class="grid" id="impacts-grid">
+            <!-- Impact cards will be populated here based on the selected category -->
+        </div>
+
+        <a href="#main-page" class="back-button" onclick="showMainPage()">Back to Main Page</a>
+    </div>
+
+    <script>
+        const impacts = {
+            pollution: [
+                {
+                    title: 'Health Impacts',
+                    content: 'Air quality affects respiratory and cardiovascular health, leading to various diseases.',
+                    link:'https://blog.degruyter.com/environmental-pollutants-impact-womens-health/'
+                },
+                {
+                    title: 'Economic and Employment Impacts',
+                    content: 'Poor air quality can lead to increased healthcare costs and lost productivity.',
+                    link : 'https://www.weforum.org/agenda/2021/06/air-pollution-cost-america-healthcare-study/'
+                },
+                {
+                    title: 'Impact on Mental Health',
+                    content: 'Exposure to pollution can lead to increased anxiety and depression levels.',
+                    link:'https://www.ox.ac.uk/news/2023-07-06-poor-air-quality-found-affect-mental-health-many-ways'
+                },
+                {
+                    title: 'Increased Vulnerability in Low-income Communities',
+                    content: 'Low-income communities are more exposed to pollution due to lack of resources.',
+                    link:'https://www.epa.gov/ej-research/epa-research-understanding-and-mitigating-environmental-health-disparities-and-risks'
+                },
+                {
+                    title: 'Gender-based Differences in Health Outcomes',
+                    content: 'Women may experience different health effects compared to men due to air pollution.',
+                    link: 'https://www.unescap.org/sites/default/d8files/event-documents/DOCT%20TAB%20Working%20Paper%20on%20Gender%20Health%20and%20Air%20Pollution%203%20February%202022.pdf'
+                },
+                {
+                    title: 'Access to Healthcare',
+                    content: 'Air quality issues can lead to disparities in access to healthcare services.',
+                    link:'https://www.epa.gov/ej-research/epa-research-environmental-justice-and-air-pollution',
+                    link2:'https://general.futuregenerali.in/blog/health-insurance/unveiling-the-consequences-water-pollutions-effects-on-women#:~:text=Exposure%20to%20heavy%20metals%20and,to%20infections%20and%20chronic%20diseases.'
+                }
+            ],
+            disaster: {
+                manmade: [
+                    {
+                        title: 'Gender-Based Violence',
+                        content: 'Manmade disasters can lead to increased rates of gender-based violence.',
+                        link: 'https://journals.sagepub.com/doi/full/10.1177/00219096211062474#:~:text=Using%20both%20qualitative%20and%20quantitative%20data%20gathered%20during%202018%20and'
+                    },
+                    {
+                        title: 'Economic Inequality',
+                        content: 'Economic disparities are often exacerbated in the aftermath of manmade disasters.',
+                        link : 'https://onlinelibrary.wiley.com/doi/full/10.1111/disa.12582#:~:text=Rapid-onset%20disasters%20create%20difficulties%20for%20all%20involved,%20but%20without%20proper?msockid=2bf68d3dc3f16d143e649fb9c26a6cee'
+                    },
+                    {
+                        title: 'Mental Health Impacts',
+                        content: 'Manmade disasters can significantly affect the mental health of women.',
+                        link: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7321792/'
+                    },
+                    {
+                        title: 'Displacement Issues',
+                        content: 'Women are often more vulnerable to displacement during manmade disasters.',
+                        link: 'https://reporting.unhcr.org/sites/default/files/UNHCR%20Gender%2C%20Displacement%20and%20Climate%20Change%20Update%20-%20July%202020.pdf#:~:text=Women%20displaced%20by%20disaster%20often%20face%20increased%20protection,health%20services%2C%20including%20reproductive%20and%20mental%20health%20services.'
+                    },
+                    {
+                        title : 'Community support ',
+                        content:'emrgency contacts',
+                        link:'https://www.thehotline.org/'
+                
+
+                    },
+                    {
+                        title:'Women blog / Event',
+                        content : "disaster impact",
+                        link:'https://sites.google.com/view/womenblog44/home'
+
+
+                    }
+                ],
+                natural: [
+                    {
+                        title: 'Increased Vulnerability',
+                        content: 'Natural disasters disproportionately affect women, particularly in developing countries.',
+                        link: 'https://www.iea-world.org/why-indias-women-are-more-vulnerable-to-disasters/#:~:text=Besides%20the%20immediate%20threat%20to%20their%20lives%20and%20livelihoods,%20women'
+                    },
+                    {
+                        title: 'Access to Resources',
+                        content: 'Natural disasters can limit women\'s access to resources and services.',
+                        link: 'https://www.un.org/en'
+                    },
+                    {
+                        title: 'Education Disruption',
+                        content: 'Natural disasters often disrupt girls\' education, leading to higher dropout rates.',
+                        link: 'https://wrd.unwomen.org/explore/insights/how-natural-disasters-undermine-schooling#:~:text=But%20while%20more%20education%20for%20girls%20may%20help%20make%20them,'
+                    },
+                    {
+                        title: 'Health Risks',
+                        content: 'Women face unique health risks during and after natural disasters.',
+                        link: 'https://wrd.unwomen.org/explore/insights/how-natural-disasters-undermine-schooling#:~:text=But%20while%20more%20education%20for%20girls%20may%20help%20make%20them,'
+                    },
+                   { 
+                        title : 'Community support ',
+                         content:'emrgency contacts',
+                         link:'https://www.thehotline.org/'
+                    },
+                    {
+                        title:'Women blog / Event',
+                        content : "disaster impact",
+                        link:'https://sites.google.com/view/womenblog44/home'
+
+
+                    }
+                ]
+            }
+        };
+
+        function showMainPage() {
+            document.getElementById('main-page').style.display = 'block';
+            document.getElementById('disaster-type-page').style.display = 'none';
+            document.getElementById('impacts-page').style.display = 'none';
+        }
+
+        function showDisasterTypePage() {
+            document.getElementById('main-page').style.display = 'none';
+            document.getElementById('disaster-type-page').style.display = 'block';
+            document.getElementById('impacts-page').style.display = 'none';
+        }
+
+        function showImpactsPage(type, category) {
+            const impactsGrid = document.getElementById('impacts-grid');
+            impactsGrid.innerHTML = ''; // Clear previous impacts
+            const title = document.getElementById('impacts-title');
+
+            if (type === 'pollution') {
+                title.textContent = 'Impacts of Pollution on Women';
+                impacts.pollution.forEach(impact => {
+                    impactsGrid.innerHTML += `
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>${impact.title}</h2>
+                            </div>
+                            <div class="card-content">
+                                <p>${impact.content}</p>
+                                <p><a href="${impact.link}" target="_blank">Read more</a></p>
+                                ${impact.link2 ? `<p><a href="${impact.link2}" target="_blank">Read more</a></p>` : ''}
+                            </div>
+                        </div>
+                    `;
+                });
+            } else if (type === 'disaster') {
+                title.textContent = `Impacts of ${category === 'manmade' ? 'Manmade' : 'Natural'} Disasters on Women`;
+                impacts.disaster[category].forEach(impact => {
+                    impactsGrid.innerHTML += `
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>${impact.title}</h2>
+                            </div>
+                            <div class="card-content">
+                                <p>${impact.content}</p>
+                                <p><a href="${impact.link}" target="_blank">Read more</a></p>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+
+            document.getElementById('main-page').style.display = 'none';
+            document.getElementById('disaster-type-page').style.display = 'none';
+            document.getElementById('impacts-page').style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>

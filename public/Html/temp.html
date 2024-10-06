@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Climate Change and Gender Inequality</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+        .landing {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .landing svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        .landing-content {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 2rem;
+            border-radius: 10px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .subtitle {
+            font-size: 1.2rem;
+        }
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            width: calc(50% - 1rem);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.5s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        .card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 2rem 0;
+        }
+        footer a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 1rem;
+            transition: background-color 0.3s ease;
+        }
+        .cta-button:hover {
+            background-color: #45a049;
+        }
+        @media (max-width: 768px) {
+            .card {
+                width: 100%;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            .subtitle {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="landing">
+        <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+            <!-- Replace this placeholder SVG with your full SVG code -->
+            <rect width="100" height="100" fill="#1a5f7a" />
+            <circle cx="50" cy="50" r="30" fill="#66a182" />
+        </svg>
+        <div class="landing-content">
+            <h1>Climate Change and Gender Inequality</h1>
+            <p class="subtitle">Unveiling the Dual Challenge</p>
+        </div>
+    </section>
+
+    <div class="card-container">
+        <div class="card">
+            <h2>The Problem</h2>
+            <p>Climate change disproportionately affects different genders, particularly women, in terms of health, displacement, and economic livelihoods. Social inequalities exacerbate these effects, limiting access to resources and decision-making power.</p>
+        </div>
+        <div class="card">
+            <h2>Our Idea</h2>
+            <p>We aim to bridge the gap between climate change and gender inequality through awareness and action. Our platform provides insights, tools, and resources to address this dual challenge effectively.</p>
+        </div>
+        <div class="card">
+            <h2>Ways to Tackle the Problem</h2>
+            <p>We offer solutions like gender-responsive policies, improved access to resources, and promotion of inclusive decision-making for climate resilience. By empowering vulnerable groups, we can create more effective and equitable climate strategies.</p>
+        </div>
+        <div class="card">
+            <h2>Real-World Example: Water Scarcity</h2>
+            <p>In regions affected by drought, women often face additional burdens as primary water collectors. Gender-sensitive water management policies can help alleviate these challenges and promote sustainable solutions that benefit entire communities.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>Contact: info@climategenderequality.org</p>
+        <div>
+            <a href="#" aria-label="Facebook">Facebook</a>
+            <a href="#" aria-label="Twitter">Twitter</a>
+            <a href="#" aria-label="Instagram">Instagram</a>
+        </div>
+        <a href="#" class="cta-button">Learn More about Gender and Climate Action</a>
+    </footer>
+
+    <script>
+        function isElementInViewport(el) {
+            const rect = el.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+
+        function handleScroll() {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                if (isElementInViewport(card)) {
+                    card.classList.add('visible');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('resize', handleScroll);
+        handleScroll();
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

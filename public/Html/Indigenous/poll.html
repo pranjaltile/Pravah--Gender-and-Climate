@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impact of Pollution on Indigenous Peoples</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background-color: #2a2a2a;
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-header {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-description {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .explore-button {
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .explore-button:hover {
+            background-color: #357abd;
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .modal-content {
+            background-color: #2a2a2a;
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 800px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .close-button {
+            background-color: transparent;
+            color: white;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+        }
+
+        .next-button {
+            display: block;
+            margin: 2rem auto;
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 1.25rem;
+        }
+
+        .next-button:hover {
+            background-color: #357abd;
+        }
+
+        canvas {
+            border: 2px solid #ffffff;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Impacts of Pollution on Indigenous Peoples</h1>
+        <div class="card-grid" id="cardGrid"></div>
+
+        <!-- Next Button -->
+        <button class="next-button" onclick="goToNext()">Next</button>
+    </div>
+
+    <div id="modal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <button class="close-button" onclick="closeModal()">&times;</button>
+            <h2 id="modalHeader"></h2>
+            <p id="modalDescription"></p>
+            <canvas id="modalChart"></canvas>
+            <h3>Comprehensive Analysis</h3>
+            <p>This section would contain a detailed analysis of the impact, including more in-depth statistics and findings from available datasets.</p>
+            <h3>Research Papers and Data</h3>
+            <a id="researchLink" class="explore-button" href="#" target="_blank">Explore Research Papers</a>
+        </div>
+    </div>
+
+    <script>
+        const cardData = [
+            {
+                header: "Water Contamination",
+                description: "Indigenous communities often rely on natural water sources, which are increasingly threatened by pollution. Contaminated water can lead to severe health issues and cultural disconnection from traditional practices.",
+                chartType: "pie",
+                chartData: {
+                    labels: ['Safe Water', 'Contaminated Water'],
+                    datasets: [{
+                        data: [50, 50], // Replace with relevant data
+                        backgroundColor: ['#36A2EB', '#FF6384'],
+                    }],
+                },
+                link: "https://example.com/research-water-contamination"
+            },
+            {
+                header: "Impact on Traditional Livelihoods",
+                description: "Pollution affects the wildlife and plants that Indigenous peoples rely on for food and medicine, threatening their traditional knowledge and cultural practices.",
+                chartType: "bar",
+                chartData: {
+                    labels: ['Sustainable Practices', 'Polluted Areas'],
+                    datasets: [{
+                        label: 'Livelihood Impact',
+                        data: [80, 20], // Replace with relevant data
+                        backgroundColor: ['#36A2EB', '#FF6384'],
+                    }],
+                },
+                link: "https://example.com/research-livelihoods"
+            },
+            {
+                header: "Health Risks",
+                description: "Pollution can exacerbate existing health conditions among Indigenous peoples, leading to higher rates of respiratory and cardiovascular diseases, particularly among vulnerable populations.",
+                chartType: "line",
+                chartData: {
+                    labels: ['0', '10', '20', '30', '40'],
+                    datasets: [{
+                        label: 'Health Risk Increase',
+                        data: [100, 120, 140, 160, 180], // Replace with relevant data
+                        borderColor: '#FF6384',
+                        tension: 0.1,
+                    }],
+                },
+                link: "https://example.com/research-health-risks"
+            },
+            {
+                header: "Cultural Disconnection",
+                description: "The degradation of the environment impacts the cultural practices of Indigenous peoples, leading to a disconnection from ancestral lands and traditional ways of life.",
+                chartType: "pie",
+                chartData: {
+                    labels: ['Connected', 'Disconnected'],
+                    datasets: [{
+                        data: [30, 70], // Replace with relevant data
+                        backgroundColor: ['#36A2EB', '#FF6384'],
+                    }],
+                },
+                link: "https://example.com/research-cultural-disconnection"
+            },
+            {
+                header: "Mental Health Challenges",
+                description: "Increased pollution can lead to mental health challenges among Indigenous peoples, as loss of land and resources contributes to feelings of helplessness and anxiety.",
+                chartType: "bar",
+                chartData: {
+                    labels: ['Stable Environment', 'Polluted Environment'],
+                    datasets: [{
+                        label: 'Mental Health Issues',
+                        data: [100, 140], // Replace with relevant data
+                        backgroundColor: ['#36A2EB', '#FF6384'],
+                    }],
+                },
+                link: "https://example.com/research-mental-health"
+            },
+            {
+                header: "Climate Change and Pollution",
+                description: "Pollution contributes to climate change, which disproportionately affects Indigenous peoples through changes in their environment, weather patterns, and access to natural resources.",
+                chartType: "line",
+                chartData: {
+                    labels: ['0', '10', '20', '30', '40'],
+                    datasets: [{
+                        label: 'Impact Over Time',
+                        data: [100, 90, 80, 70, 60], // Replace with relevant data
+                        borderColor: '#FF6384',
+                        tension: 0.1,
+                    }],
+                },
+                link: "https://example.com/research-climate-change"
+            },
+        ];
+
+        const cardGrid = document.getElementById("cardGrid");
+
+        cardData.forEach((card, index) => {
+            const cardElement = document.createElement("div");
+            cardElement.className = "card";
+            cardElement.innerHTML = `
+                <h2 class="card-header">${card.header}</h2>
+                <p class="card-description">${card.description}</p>
+                <canvas id="chart${index}"></canvas>
+                <button class="explore-button" onclick='openModal(${index})'>Explore More</button>
+            `;
+            cardGrid.appendChild(cardElement);
+
+            renderChart(card.chartType, card.chartData, `chart${index}`);
+        });
+
+        function renderChart(type, data, canvasId) {
+            const ctx = document.getElementById(canvasId).getContext("2d");
+            new Chart(ctx, {
+                type: type,
+                data: data,
+            });
+        }
+
+        const modal = document.getElementById("modal");
+        const modalHeader = document.getElementById("modalHeader");
+        const modalDescription = document.getElementById("modalDescription");
+        const modalChart = document.getElementById("modalChart");
+        const researchLink = document.getElementById("researchLink");
+
+        function openModal(index) {
+            const card = cardData[index];
+            modal.style.display = "flex";
+            modalHeader.textContent = card.header;
+            modalDescription.textContent = card.description;
+            renderChart(card.chartType, card.chartData, "modalChart");
+            researchLink.href = card.link;
+        }
+
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        function goToNext() {
+            window.location.href = "stat.html"; // Replace with the actual link or function
+        }
+    </script>
+</body>
+</html>

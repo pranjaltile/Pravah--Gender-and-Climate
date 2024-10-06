@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Understanding Heatwaves</title>
+  <link rel="stylesheet" href="../css/new.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="min-h-screen bg-gray-100">
+    <!-- Header -->
+    <header class="bg-green-500 text-white p-6 text-center">
+      <h1 class="text-3xl font-bold">Understanding Heatwaves</h1>
+      <p class="mt-2">A vital issue in climate change and its effects on the environment.</p>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8">
+      
+      <!-- Heatwave Statistics Section -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold text-center mb-6">Statistics on Heatwaves</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- Rising Temperatures Card -->
+          <div class="card">
+            <h3 class="card-title">Rising Temperatures</h3>
+            <p>Global temperatures have increased by 1.2°C since the pre-industrial era. Rising temperatures pose significant challenges requiring immediate action across various sectors. By implementing mitigation strategies, we can reduce the impacts on society.</p>
+          </div>
+          <!-- Increased Frequency Card -->
+          <div class="card">
+            <h3 class="card-title">Increased Frequency</h3>
+            <p>Heatwaves are occurring 2-3 times more frequently than in the 1980s. This increased frequency impacts health, the environment, and the economy, necessitating mitigation strategies.</p>
+          </div>
+          <!-- Health Impacts Card -->
+          <div class="card">
+            <h3 class="card-title">Health Impacts</h3>
+            <p>The health impacts of heatwaves are significant, particularly affecting vulnerable populations. Public health strategies are essential to address these challenges and enhance community resilience.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Heatwave Impact on LGBTQ Community and Temperature Trends Section -->
+      <section class="mb-12">
+        <h3 class="card-title">Heatwave Effects on Various Aspects</h3>
+        <p>Distribution of key impact categories and temperature increase over time.</p>
+
+        <!-- Row of Pie Chart and Line Chart -->
+        <div class="chart-section">
+          <!-- Pie Chart: Heatwave Effects on LGBTQ Community -->
+          <div class="chart-container">
+            <canvas id="pieChart"></canvas>
+          </div>
+          <!-- Line Chart: Heatwaves Over the Years -->
+          <div class="chart-container">
+            <canvas id="lineChart"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- Informative Resources Section -->
+      <section class="mb-12 bg-gray-200 rounded-lg p-6">
+        <h2 class="text-2xl font-semibold mb-4">Informative Resources</h2>
+        <p class="mb-4">Learn more about the impacts of heatwaves:</p>
+        <ul class="list-disc pl-6">
+          <li><a href="https://www.ncdc.noaa.gov/societal-impacts" target="_blank" class="text-blue-600 hover:underline">NOAA - Societal Impacts of Heatwaves</a></li>
+          <li><a href="https://www.who.int/health-topics/climate-change#tab=tab_1" target="_blank" class="text-blue-600 hover:underline">WHO - Climate Change and Health</a></li>
+          <li><a href="https://www.ipcc.ch/report/ar6/wg1/#Chapter-11" target="_blank" class="text-blue-600 hover:underline">IPCC - Climate Change Reports</a></li>
+        </ul>
+      </section>
+
+      <!-- Downloadable Documents Section -->
+      <section class="mb-12 bg-gray-200 rounded-lg p-6">
+        <h2 class="text-2xl font-semibold mb-4">Downloadable Documents</h2>
+        <p class="mb-4">Access these documents for more detailed information:</p>
+        <ul class="list-disc pl-6">
+          <li><a href="path/to/heatwaves_report.pdf" download class="text-blue-600 hover:underline">Heatwaves Report 2023</a></li>
+          <li><a href="path/to/climate_change_impact.pdf" download class="text-blue-600 hover:underline">Climate Change Impacts Overview</a></li>
+          <li><a href="path/to/health_impacts_heatwaves.pdf" download class="text-blue-600 hover:underline">Health Impacts of Heatwaves</a></li>
+        </ul>
+      </section>
+
+    </div> <!-- End Container -->
+  </div>
+
+  <!-- JS for the charts -->
+  <script src="new.js"></script>
+</body>
+</html>

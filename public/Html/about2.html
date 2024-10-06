@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Climate Change and Gender Inequality</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+        .landing {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .landing-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        .landing-content {
+            background-color: #aaa;
+            padding: 2rem;
+            border-radius: 10px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .subtitle {
+            font-size: 1.2rem;
+        }
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            width: calc(50% - 1rem);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.5s ease;
+            cursor: pointer;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        .card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        @media (max-width: 768px) {
+            .card {
+                width: 100%;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            .subtitle {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="landing">
+        <div class="landing-bg">
+            <!-- Replace the src attribute with your actual SVG file path -->
+            <img src="../images/bg.jpg" alt="Climate Change and Gender Inequality Illustration" width="100%" height="100%">
+        </div>
+        <div class="landing-content">
+            <h1>Climate Change and Gender Inequality</h1>
+            <p class="subtitle">Unveiling the Dual Challenge</p>
+        </div>
+    </section>
+
+    <div class="card-container">
+        <div class="card">
+            <h2>The Problem</h2>
+            <p>Climate change impacts different genders unequally, particularly in terms of health, displacement, and economic livelihoods. Women and marginalized groups often face disproportionate challenges due to existing social inequalities and limited access to resources.</p>
+        </div>
+        <div class="card">
+            <h2>Our Idea</h2>
+            <p>We're bridging the gap between climate change and gender inequality through an interactive platform. Our goal is to raise awareness, provide education, and promote actionable solutions that address both climate resilience and gender equity.</p>
+        </div>
+        <div class="card">
+            <h2>Ways to Tackle the Problem</h2>
+            <p>We advocate for gender-responsive policies and inclusive climate action. This includes promoting equal representation in decision-making processes, ensuring access to resources and technology, and implementing targeted support for vulnerable communities.</p>
+        </div>
+        <div class="card">
+            <h2>Water Scarcity Example</h2>
+            <p>In drought-prone areas, women often bear the burden of water collection. Gender-specific water management policies can alleviate these challenges by improving infrastructure, promoting community-led solutions, and empowering women in water resource management roles.</p>
+        </div>
+    </div>
+
+    <script>
+        function isElementInViewport(el) {
+            const rect = el.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+
+        function handleScroll() {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                if (isElementInViewport(card)) {
+                    card.classList.add('visible');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('resize', handleScroll);
+        handleScroll();
+
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('click', () => {
+                alert('You clicked on: ' + card.querySelector('h2').textContent);
+            });
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

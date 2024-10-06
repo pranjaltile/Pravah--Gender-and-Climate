@@ -1,0 +1,132 @@
+/* new.css */
+
+body {
+    font-family: 'Arial', sans-serif; /* Use a clean and modern font */
+    line-height: 1.6; /* Improve readability */
+    margin: 0;
+    padding: 0;
+    background-color: black; /* Light background color */
+}
+
+/* Header */
+header {
+    background-color:  #f2910a; /* Green color */
+    padding: 20px;
+    text-align: center;
+    overflow: hidden;
+}
+
+header h1 {
+    font-size: 2.5rem; /* Larger font size */
+    margin: 0;
+}
+
+header p {
+    font-size: 1.2rem; /* Slightly larger subheading */
+}
+
+/* Container */
+.container {
+    max-width: 1200px; /* Limit the width for better layout */
+    margin: 0 auto; /* Center the container */
+    padding: 20px;
+}
+
+/* Section titles */
+h2 {
+    font-size: 2rem;
+    color: white; /* Darker color for section titles */
+    margin-bottom: 1rem;
+   
+}
+
+/* Card styles */
+.card {
+    background: white; /* White background for cards */
+    border-radius: 8px; /* Rounded corners */
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: transform 0.3s; /* Smooth scaling on hover */
+}
+
+.card:hover {
+    transform: scale(1.05); /* Scale effect on hover */
+}
+
+.card-title {
+    font-size: 1.5rem; /* Size of card titles */
+    margin-bottom: 10px;
+    color: #28a745; /* Match header color */
+}
+
+/* Chart container */
+.chart-container {
+    position: relative;
+    height: 300px; /* Set fixed height for charts */
+    margin-top: 20px; /* Space above charts */
+}
+
+/* Resource links */
+ul.list-disc {
+    padding-left: 20px; /* Padding for list items */
+}
+
+a {
+    color: #007bff; /* Link color */
+    text-decoration: none; /* No underline */
+}
+
+a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+/* Footer */
+footer {
+    background-color: #28a745; /* Match header color */
+    color: white; /* White text */
+    padding: 15px 0; /* Padding for footer */
+    text-align: center;
+    position: relative; /* Relative positioning */
+    bottom: 0; /* Stick to the bottom */
+    width: 100%; /* Full width */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem; /* Adjust heading size for smaller screens */
+    }
+
+    h2 {
+        font-size: 1.5rem; /* Adjust section title size */
+    }
+
+    .grid {
+        grid-template-columns: 1fr; /* Single column layout on small screens */
+    }
+}
+/* Container for the charts */
+.chart-section {
+    display: flex; /* Use flexbox for row layout */
+    justify-content: space-between; /* Add space between the charts */
+    align-items: center; /* Align items vertically in the center */
+    gap: 20px; /* Gap between the charts */
+    margin-bottom: 30px; /* Add margin at the bottom */
+}
+
+/* Individual chart container */
+.chart-container {
+    flex: 1; /* Ensure both charts take up equal space */
+    height: 300px; /* Set a fixed height for the charts */
+    background: white; /* White background for charts */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Adjust the charts on smaller screens */
+@media (max-width: 768px) {
+    .chart-section {
+        flex-direction: column; /* Stack charts vertically on small screens */
+    }
+}

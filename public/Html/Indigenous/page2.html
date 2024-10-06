@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Category Selection</title>
+  <style>
+    /* Base styles */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #0b0a0a;
+      color: rgb(10, 10, 10);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Container for the cards, full screen, centered */
+    .container {
+      display: flex;
+      width: 100vw;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Card styles - fullscreen layout */
+    .card {
+      background-color: rgba(26, 26, 26, 0.8); /* Slightly transparent to see the background */
+      width: 40%;
+      height: 60%;
+      margin: 0 20px;
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative; /* Added to position the background image */
+      overflow: hidden; /* Ensures no overflow from the card */
+    }
+
+    /* Background images for cards */
+    #pollution-card {
+      background-image: url('ak1.webp'); /* Set pollution background */
+      background-size: cover; /* Cover the entire card */
+      background-position: center; /* Center the image */
+    }
+
+    #disasters-card {
+      background-image: url('ak2.jpeg'); /* Set disasters background */
+      background-size: cover; /* Cover the entire card */
+      background-position: center; /* Center the image */
+    }
+
+    /* Card header */
+    .card-header {
+      background-color: black; /* Background color for the header */
+      border-radius: 10px; /* Rounded corners for the header box */
+      padding: 10px; /* Padding inside the header */
+      margin-bottom: 20px; /* Space between header and content */
+    }
+
+    .card-header h2 {
+      font-size: 36px;
+      margin: 0;
+      color: white; /* Set the heading color to white */
+      position: relative;
+      z-index: 1; /* Ensures header is above the background */
+    }
+
+    /* Card content */
+    .card-content p {
+      font-size: 20px;
+      margin: 20px 0;
+      position: relative;
+      z-index: 1; /* Ensures content is above the background */
+    }
+
+    /* Card footer */
+    .card-footer .button {
+      padding: 15px 25px;
+      border-radius: 10px;
+      background-color: #3498db;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+      position: relative;
+      z-index: 1; /* Ensures button is above the background */
+    }
+
+    .card-footer .button:hover {
+      background-color: #2980b9;
+    }
+
+    /* Hover effect */
+    .card:hover {
+      transform: scale(1.05);
+      background-color: rgba(51, 51, 51, 0.9); /* Darker on hover */
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.9);
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .card {
+        width: 80%;
+        height: 50%;
+      }
+
+      .card-header h2 {
+        font-size: 28px;
+      }
+
+      .card-content p {
+        font-size: 18px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        width: 90%;
+        height: 50%;
+      }
+
+      .card-header h2 {
+        font-size: 24px;
+      }
+
+      .card-content p {
+        font-size: 16px;
+      }
+
+      .card-footer .button {
+        padding: 10px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card" id="pollution-card">
+      <div class="card-header">
+        <h2>Pollution</h2>
+      </div>
+      <div class="card-content">
+        <p>Explore the impacts of pollution on our environment</p>
+      </div>
+      <div class="card-footer">
+        <a href="poll.html" class="button">Explore Pollution</a>
+      </div>
+    </div>
+    
+    <div class="card" id="disasters-card">
+      <div class="card-header">
+        <h2>Disasters</h2>
+      </div>
+      <div class="card-content">
+        <p>Learn about natural and man-made disasters</p>
+      </div>
+      <div class="card-footer">
+        <a href="disaster.html" class="button">Explore Disasters</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // For additional interactivity or dynamic effects
+    console.log("Page Loaded");
+  </script>
+</body>
+</html>

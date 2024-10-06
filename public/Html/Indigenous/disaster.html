@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disaster Impacts on Indigenous Peoples</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background-color: #2a2a2a;
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-header {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-description {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .explore-button {
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .explore-button:hover {
+            background-color: #357abd;
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .modal-content {
+            background-color: #2a2a2a;
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 800px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .close-button {
+            background-color: transparent;
+            color: white;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+        }
+
+        canvas {
+            border: 2px solid #ffffff;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .next-button {
+            display: block;
+            margin: 2rem auto; /* Centers the button horizontally */
+            padding: 10px 20px;
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .next-button:hover {
+            background-color: #357abd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Major Impacts of Disasters on Indigenous Peoples</h1>
+        <div class="card-grid" id="cardGrid"></div>
+        <button class="next-button" onclick="nextPage()">Next</button>
+    </div>
+
+    <div id="modal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <button class="close-button" onclick="closeModal()">&times;</button>
+            <h2 id="modalHeader"></h2>
+            <p id="modalDescription"></p>
+            <canvas id="modalChart"></canvas>
+            <h3>Comprehensive Analysis</h3>
+            <p>This section would contain a detailed analysis of the impact, including more in-depth statistics and findings from available datasets.</p>
+            <h3>Research Papers and Data</h3>
+            <a id="researchLink" class="explore-button" href="#" target="_blank">Explore Research Papers</a>
+        </div>
+    </div>
+
+    <script>
+        const cardData = [
+            {
+                header: "Loss of Traditional Lands",
+                description: "Disasters often lead to displacement of Indigenous communities from their ancestral lands, disrupting their cultural practices and livelihoods.",
+                chartType: "bar",
+                chartData: {
+                    labels: ['Pre-Disaster', 'Post-Disaster'],
+                    datasets: [{
+                        label: 'Community Land Loss (%)',
+                        data: [100, 60],
+                        backgroundColor: ['#36A2EB', '#FF6384'],
+                    }],
+                },
+                link: "https://example.com/research-land-loss"
+            },
+            {
+                header: "Health Disparities",
+                description: "Indigenous peoples face increased health issues, including chronic conditions and mental health crises, exacerbated by disasters.",
+                chartType: "line",
+                chartData: {
+                    labels: ['Before Disaster', 'After 1 Month', 'After 3 Months'],
+                    datasets: [{
+                        label: 'Health Issues Reported',
+                        data: [50, 150, 200],
+                        borderColor: '#FF6384',
+                        tension: 0.1,
+                    }],
+                },
+                link: "https://example.com/research-health-disparities"
+            },
+            {
+                header: "Economic Impacts",
+                description: "Disasters can severely affect the economic stability of Indigenous communities, leading to job losses and increased poverty.",
+                chartType: "pie",
+                chartData: {
+                    labels: ['Job Loss', 'Stable Jobs'],
+                    datasets: [{
+                        data: [70, 30],
+                        backgroundColor: ['#FF6384', '#36A2EB'],
+                    }],
+                },
+                link: "https://example.com/research-economic-impacts"
+            },
+            {
+                header: "Mental Health Struggles",
+                description: "Following disasters, many Indigenous individuals face heightened anxiety, PTSD, and depression, leading to long-term mental health challenges.",
+                chartType: "bar",
+                chartData: {
+                    labels: ['Before Disaster', 'After Disaster'],
+                    datasets: [{
+                        label: 'Mental Health Disorders (%)',
+                        data: [30, 70],
+                        backgroundColor: ['#36A2EB', '#FF6384'],
+                    }],
+                },
+                link: "https://example.com/research-mental-health"
+            },
+            {
+                header: "Social and Cultural Disruption",
+                description: "Disasters disrupt social networks and cultural practices, leading to a loss of community cohesion and identity among Indigenous peoples.",
+                chartType: "pie",
+                chartData: {
+                    labels: ['Connected', 'Disrupted'],
+                    datasets: [{
+                        data: [40, 60],
+                        backgroundColor: ['#36A2EB', '#FF6384'],
+                    }],
+                },
+                link: "https://example.com/research-social-disruption"
+            },
+            {
+                header: "Increased Vulnerability",
+                description: "Indigenous communities often face increased vulnerability due to inadequate infrastructure and resources, making recovery from disasters more challenging.",
+                chartType: "line",
+                chartData: {
+                    labels: ['Before Disaster', 'After Disaster'],
+                    datasets: [{
+                        label: 'Community Resilience (%)',
+                        data: [80, 40],
+                        borderColor: '#FF6384',
+                        tension: 0.1,
+                    }],
+                },
+                link: "https://example.com/research-vulnerability"
+            },
+        ];
+
+        const cardGrid = document.getElementById("cardGrid");
+
+        cardData.forEach((card, index) => {
+            const cardElement = document.createElement("div");
+            cardElement.className = "card";
+            cardElement.innerHTML = `
+                <h2 class="card-header">${card.header}</h2>
+                <p class="card-description">${card.description}</p>
+                <canvas id="chart${index}"></canvas>
+                <button class="explore-button" onclick='openModal(${index})'>Explore More</button>
+            `;
+            cardGrid.appendChild(cardElement);
+
+            renderChart(card.chartType, card.chartData, `chart${index}`);
+        });
+
+        function renderChart(type, data, elementId) {
+            const ctx = document.getElementById(elementId).getContext('2d');
+            const options = {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            color: '#ffffff', // Chart text color change
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: 'Impact Data',
+                        color: '#ffffff' // Title text color change
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: {
+                            color: '#ffffff' // X-axis ticks color change
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            color: '#ffffff' // Y-axis ticks color change
+                        }
+                    }
+                }
+            };
+
+            new Chart(ctx, {
+                type: type,
+                data: data,
+                options: options,
+            });
+        }
+
+        function openModal(index) {
+            const modal = document.getElementById("modal");
+            const card = cardData[index];
+            document.getElementById("modalHeader").innerText = card.header;
+            document.getElementById("modalDescription").innerText = card.description;
+            document.getElementById("researchLink").href = card.link;
+            document.getElementById("modalChart").getContext('2d').clearRect(0, 0, modalChart.width, modalChart.height);
+            renderChart(card.chartType, card.chartData, "modalChart");
+            modal.style.display = "flex";
+        }
+
+        function closeModal() {
+            const modal = document.getElementById("modal");
+            modal.style.display = "none";
+        }
+
+        function nextPage() {
+            window.location.href = "stats.html"; // Navigate to stat.html
+        }
+    </script>
+</body>
+</html>
